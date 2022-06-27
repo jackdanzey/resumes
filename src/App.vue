@@ -1,5 +1,5 @@
 <template>
-  <!-- This is a comment -->
+  <!-- This is not a comment -->
   <nav>
     <router-link to="/">Home</router-link>
     |
