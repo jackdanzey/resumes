@@ -16,6 +16,19 @@ export default {
         github_url: "github.com/jackdanzey",
         photo: "jack.jpg",
       },
+      experience: {
+        start_date: "Today",
+        end_date: "N/A",
+        job_title: "Smart Guy",
+        company_name: "Syntech",
+        details: "",
+      },
+      education: {
+  	    start_date: "2010",
+        end_date: "2011",
+        degree: "Yes",
+        university: "Steve Harvard",
+        details: "",
     };
   },
   created: function () {},
@@ -29,6 +42,10 @@ export default {
     <h3>{{ students.email }}</h3>
     <h3>{{ students.phone_number }}</h3>
     <h3></h3>
+    <ul>
+      <li v-for="(value, key, index) in experience">{{ key }}: {{ value }}</li>
+      <li v-for="(value, key, index) in education">{{ key }}: {{ value }}</li>
+    </ul>
   </div>
 </template>
 
