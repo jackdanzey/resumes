@@ -44,8 +44,14 @@ export default {
     <h3>{{ students.phone_number }}</h3>
     <h3></h3>
     <ul>
-      <li v-for="(value, key, index) in experience">{{ key }}: {{ value }}</li>
-      <li v-for="(value, key, index) in education">{{ key }}: {{ value }}</li>
+      <li v-for="(value, key) in experience" v-bind:key="(key, value)">
+        <h2>{{ key }}:</h2>
+        {{ value }}
+      </li>
+      <li v-for="(value, key) in education" v-bind:key="(key, value)">
+        <h2>{{ key }}:</h2>
+        {{ value }}
+      </li>
     </ul>
   </div>
 </template>
