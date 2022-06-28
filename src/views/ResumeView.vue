@@ -17,6 +17,22 @@ export default {
         github_url: "github.com/jackdanzey",
         photo: "https://i.pinimg.com/564x/1b/14/34/1b1434c7d78bca9e24bcb89e5126903c.jpg",
       },
+      experience: {
+        start_date: "Today",
+        end_date: "N/A",
+        job_title: "Smart Guy",
+        company_name: "Syntech",
+        details: "",
+      },
+      education: {
+        start_date: "2010",
+        end_date: "2011",
+        degree: "Yes",
+        university: "Steve Harvard",
+        details: "",
+      },
+      created: function () {},
+      methods: {},
     };
   },
   created: function () {
@@ -47,6 +63,16 @@ export default {
       </h3>
       <h2>{{ student.short_bio }}</h2>
     </div>
+    <ul>
+      <li v-for="(value, key) in experience" v-bind:key="(key, value)">
+        <h2>{{ key }}:</h2>
+        {{ value }}
+      </li>
+      <li v-for="(value, key) in education" v-bind:key="(key, value)">
+        <h2>{{ key }}:</h2>
+        {{ value }}
+      </li>
+    </ul>
   </div>
 </template>
 
