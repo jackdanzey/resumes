@@ -16,19 +16,6 @@ export default {
         resume: "resume.url",
         github_url: "github.com/jackdanzey",
         photo: "https://i.pinimg.com/564x/1b/14/34/1b1434c7d78bca9e24bcb89e5126903c.jpg",
-      }, experience: {
-        start_date: "Today",
-        end_date: "N/A",
-        job_title: "Smart Guy",
-        company_name: "Syntech",
-        details: "",
-      },
-      education: {
-        start_date: "2010",
-        end_date: "2011",
-        degree: "Yes",
-        university: "Steve Harvard",
-        details: "",
       },
       capstone: {
         name: "Super cool fun app",
@@ -36,21 +23,22 @@ export default {
         url: "www.coolapp.com",
         screenshot: "cool.jpg",
       },
-      nameFilter: "",
-    };
-  },
-  created: function () {},
-  methods: {
-    filterName: function () {
-      return this.students.filter((student) => {
-        let lowerName = student.first_name.toLowerCase();
-        let lowerNameFilter = this.nameFilter.toLowerCase();
-        return lowerName.includes(lowerNameFilter);
-      });
-    },
-  },
-      created: function () {},
-      methods: {},
+      nameFilter: {},
+      experience: {
+        company_name: "Syntech",
+        job_title: "Smart Guy",
+        start_date: "Today",
+        end_date: "N/A",
+        details: "",
+      },
+      education: {
+        university: "Steve Harvard",
+        start_date: "2010",
+        end_date: "2011",
+        degree: "Yes",
+        details: "",
+      },
+      skills: ["Nice", "Patient", "Good Lover", "Long walks on the beach"],
     };
   },
   created: function () {
@@ -59,26 +47,25 @@ export default {
       this.students = response.data;
     });
   },
-  methods: {},
+  methods: {
+    // filterName: function () {
+    // return this.students.filter((student) => {
+    // let lowerName = student.first_name.toLowerCase();
+    // let lowerNameFilter = this.nameFilter.toLowerCase();
+    // return lowerName.includes(lowerNameFilter);
+    // });
+    // },
+  },
 };
 </script>
 
 <template>
   <div class="home">
-    <div v-for="student in filterName()" v-bind:key="student.id">
-      <h2>{{ student.first_name }}</h2>
-      <p>{{ student.last_name }}</p>
-      <router-link v-bind:to="`/students/${student.id}`">More details</router-link>
-    </div>
-    <div>
-      <h3>{{ capstone.name }}</h3>
-      <p>{{ capstone.description }}</p>
-      <p>{{ capstone.url }}</p>
-      <p>{{ capstone.screenshot }}</p>
-    </div>
-    <a class="twitter-timeline" href="https://twitter.com/PhilosophyDose_?ref_src=twsrc%5Etfw">
-      Tweets by PhilosophyDose_
-    </a>
+    <!-- <div v-for="student in filterName()" v-bind:key="student.id"> -->
+    <!-- <h2>{{ student.first_name }}</h2> -->
+    <!-- <p>{{ student.last_name }}</p> -->
+    <!-- <router-link v-bind:to="`/students/${student.id}`">More details</router-link> -->
+    <!-- </div> -->
     <div class="container">
       <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
       <h1>{{ student.first_name }} {{ student.last_name }}</h1>
@@ -96,15 +83,24 @@ export default {
       <h2>{{ student.short_bio }}</h2>
     </div>
     <ul>
-      <li v-for="(value, key) in experience" v-bind:key="(key, value)">
-        <h2>{{ key }}:</h2>
-        {{ value }}
+      <li>
+        <h2>Education</h2>
+        <div v-for="(value, key) in experience" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
       </li>
-      <li v-for="(value, key) in education" v-bind:key="(key, value)">
-        <h2>{{ key }}:</h2>
-        {{ value }}
-      </li>
+      <li><h2>Experience</h2></li>
+      <div v-for="(value, key) in education" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
+      <li><h2>Skills</h2></li>
+      <div v-for="skill in skills" v-bind:key="skill">{{ skill }}</div>
     </ul>
+    <div>
+      <h3>{{ capstone.name }}</h3>
+      <p>{{ capstone.description }}</p>
+      <p>{{ capstone.url }}</p>
+      <p>{{ capstone.screenshot }}</p>
+    </div>
+    <a class="twitter-timeline" href="https://twitter.com/PhilosophyDose_?ref_src=twsrc%5Etfw">
+      Tweets by PhilosophyDose_
+    </a>
   </div>
 </template>
 
