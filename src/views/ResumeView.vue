@@ -23,19 +23,7 @@ export default {
         url: "www.coolapp.com",
         screenshot: "cool.jpg",
       },
-      nameFilter: "",
-    };
-  },
-  created: function () {},
-  methods: {
-    filterName: function () {
-      return this.students.filter((student) => {
-        let lowerName = student.first_name.toLowerCase();
-        let lowerNameFilter = this.nameFilter.toLowerCase();
-        return lowerName.includes(lowerNameFilter);
-      });
-    },
-  },
+      nameFilter: {},
       experience: {
         start_date: "Today",
         end_date: "N/A",
@@ -50,8 +38,6 @@ export default {
         university: "Steve Harvard",
         details: "",
       },
-      created: function () {},
-      methods: {},
     };
   },
   created: function () {
@@ -60,26 +46,25 @@ export default {
       this.students = response.data;
     });
   },
-  methods: {},
+  methods: {
+    // filterName: function () {
+    // return this.students.filter((student) => {
+    // let lowerName = student.first_name.toLowerCase();
+    // let lowerNameFilter = this.nameFilter.toLowerCase();
+    // return lowerName.includes(lowerNameFilter);
+    // });
+    // },
+  },
 };
 </script>
 
 <template>
   <div class="home">
-    <div v-for="student in filterName()" v-bind:key="student.id">
-      <h2>{{ student.first_name }}</h2>
-      <p>{{ student.last_name }}</p>
-      <router-link v-bind:to="`/students/${student.id}`">More details</router-link>
-    </div>
-    <div>
-      <h3>{{ capstone.name }}</h3>
-      <p>{{ capstone.description }}</p>
-      <p>{{ capstone.url }}</p>
-      <p>{{ capstone.screenshot }}</p>
-    </div>
-    <a class="twitter-timeline" href="https://twitter.com/PhilosophyDose_?ref_src=twsrc%5Etfw">
-      Tweets by PhilosophyDose_
-    </a>
+    <!-- <div v-for="student in filterName()" v-bind:key="student.id"> -->
+    <!-- <h2>{{ student.first_name }}</h2> -->
+    <!-- <p>{{ student.last_name }}</p> -->
+    <!-- <router-link v-bind:to="`/students/${student.id}`">More details</router-link> -->
+    <!-- </div> -->
     <div class="container">
       <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
       <h1>{{ student.first_name }} {{ student.last_name }}</h1>
@@ -106,6 +91,15 @@ export default {
         {{ value }}
       </li>
     </ul>
+    <div>
+      <h3>{{ capstone.name }}</h3>
+      <p>{{ capstone.description }}</p>
+      <p>{{ capstone.url }}</p>
+      <p>{{ capstone.screenshot }}</p>
+    </div>
+    <a class="twitter-timeline" href="https://twitter.com/PhilosophyDose_?ref_src=twsrc%5Etfw">
+      Tweets by PhilosophyDose_
+    </a>
   </div>
 </template>
 
