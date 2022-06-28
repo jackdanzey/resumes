@@ -16,6 +16,19 @@ export default {
         resume: "resume.url",
         github_url: "github.com/jackdanzey",
         photo: "https://i.pinimg.com/564x/1b/14/34/1b1434c7d78bca9e24bcb89e5126903c.jpg",
+      }, experience: {
+        start_date: "Today",
+        end_date: "N/A",
+        job_title: "Smart Guy",
+        company_name: "Syntech",
+        details: "",
+      },
+      education: {
+        start_date: "2010",
+        end_date: "2011",
+        degree: "Yes",
+        university: "Steve Harvard",
+        details: "",
       },
       capstone: {
         name: "Super cool fun app",
@@ -36,20 +49,6 @@ export default {
       });
     },
   },
-      experience: {
-        start_date: "Today",
-        end_date: "N/A",
-        job_title: "Smart Guy",
-        company_name: "Syntech",
-        details: "",
-      },
-      education: {
-        start_date: "2010",
-        end_date: "2011",
-        degree: "Yes",
-        university: "Steve Harvard",
-        details: "",
-      },
       created: function () {},
       methods: {},
     };
