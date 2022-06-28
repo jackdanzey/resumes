@@ -24,15 +24,16 @@ export default {
         details: "",
       },
       education: {
-  	    start_date: "2010",
+        start_date: "2010",
         end_date: "2011",
         degree: "Yes",
         university: "Steve Harvard",
         details: "",
+      },
+      created: function () {},
+      methods: {},
     };
   },
-  created: function () {},
-  methods: {},
 };
 </script>
 
