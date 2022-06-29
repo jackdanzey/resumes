@@ -25,19 +25,20 @@ export default {
       },
       nameFilter: "",
       experience: {
+        company_name: "Syntech",
+        job_title: "Smart Guy",
         start_date: "Today",
         end_date: "N/A",
-        job_title: "Smart Guy",
-        company_name: "Syntech",
         details: "",
       },
       education: {
+        university: "Steve Harvard",
         start_date: "2010",
         end_date: "2011",
         degree: "Yes",
-        university: "Steve Harvard",
         details: "",
       },
+      skills: ["Nice", "Patient", "Good Lover", "Long walks on the beach"],
     };
   },
   created: function () {
@@ -84,14 +85,14 @@ export default {
       </div>
     </div>
     <ul>
-      <li v-for="(value, key) in experience" v-bind:key="(key, value)">
-        <h2>{{ key }}:</h2>
-        {{ value }}
+      <li>
+        <h2>Education</h2>
+        <div v-for="(value, key) in experience" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
       </li>
-      <li v-for="(value, key) in education" v-bind:key="(key, value)">
-        <h2>{{ key }}:</h2>
-        {{ value }}
-      </li>
+      <li><h2>Experience</h2></li>
+      <div v-for="(value, key) in education" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
+      <li><h2>Skills</h2></li>
+      <div v-for="skill in skills" v-bind:key="skill">{{ skill }}</div>
     </ul>
     <div>
       <h3>{{ capstone.name }}</h3>
