@@ -23,7 +23,7 @@ export default {
         url: "www.coolapp.com",
         screenshot: "cool.jpg",
       },
-      nameFilter: {},
+      nameFilter: "",
       experience: {
         company_name: "Syntech",
         job_title: "Smart Guy",
@@ -66,21 +66,23 @@ export default {
     <!-- <p>{{ student.last_name }}</p> -->
     <!-- <router-link v-bind:to="`/students/${student.id}`">More details</router-link> -->
     <!-- </div> -->
-    <div class="container">
-      <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
-      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-      <h2>Contact Information: {{ student.email }} | {{ student.phone_number }} |</h2>
-      <h3>
-        <a :href="`${student.linkedIn_url}`">{{ student.linkedIn_url }}</a>
-        | Twitter: {{ student.twitter }} |
-        <a :href="`${student.personal_blog_url}`">{{ student.personal_blog_url }}</a>
-        |
-        <a :href="`${student.resume}`">{{ student.resume }}</a>
-        |
-        <a :href="`${student.github_url}`">{{ student.github_url }}</a>
-        |
-      </h3>
-      <h2>{{ student.short_bio }}</h2>
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+      <div class="mx-auto" style="width: 1000px">
+        <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
+        <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+        <h3>Email: {{ student.email }} | Phone Number:{{ student.phone_number }} |</h3>
+        <h5>
+          <a :href="`${student.linkedIn_url}`">{{ student.linkedIn_url }}</a>
+          | Twitter: {{ student.twitter }} |
+          <a :href="`${student.personal_blog_url}`">{{ student.personal_blog_url }}</a>
+          |
+          <a :href="`${student.resume}`">{{ student.resume }}</a>
+          |
+          <a :href="`${student.github_url}`">{{ student.github_url }}</a>
+          |
+        </h5>
+        <h3>{{ student.short_bio }}</h3>
+      </div>
     </div>
     <ul>
       <li>
