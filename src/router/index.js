@@ -9,8 +9,8 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/resume",
-    name: "resume-show",
+    path: "/students",
+    name: "students-show",
     component: ResumeView,
   },
   {

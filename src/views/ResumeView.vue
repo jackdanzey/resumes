@@ -4,9 +4,9 @@ export default {
   data: function () {
     return {
       message: "RESUME! xxxxx",
-      students: {},
+      student: {},
       capstones: [],
-      nameFilter: {},
+      first_nameFilter: "",
       experiences: [],
       educations: [],
       skills: [],
@@ -14,12 +14,12 @@ export default {
   },
   created: function () {
     axios.get("/students/1.json").then((response) => {
-      console.log(response.data);
-      this.students = response.data;
+      this.student = response.data;
       this.capstones = response.data.capstones;
-      this.experience = response.data.experiences;
+      this.experiences = response.data.experiences;
       this.educations = response.data.educations;
       this.skills = response.data.skills;
+      console.log(response.data);
     });
   },
   methods: {},
@@ -28,42 +28,91 @@ export default {
 
 <template>
   <div class="home">
-    <div class="container">
-      <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
-      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-      <h2>Contact Information: {{ student.email }} | {{ student.phone_number }} |</h2>
-      <h3>
-        <a :href="`${student.linkedIn_url}`">{{ student.linkedIn_url }}</a>
-        | Twitter: {{ student.twitter }} |
-        <a :href="`${student.personal_blog_url}`">{{ student.personal_blog_url }}</a>
-        |
-        <a :href="`${student.resume}`">{{ student.resume }}</a>
-        |
-        <a :href="`${student.github_url}`">{{ student.github_url }}</a>
-        |
-      </h3>
-      <h2>{{ student.short_bio }}</h2>
-    </div>
-    <ul>
-      <li>
-        <h2>Education</h2>
-        <div v-for="education in educations" v-bind:key="education.id">{{ education.university_name }}</div>
-      </li>
-      <li><h2>Experience</h2></li>
-      <!-- <div v-for="(value, key) in experience" v-bind:key="(key, value)">{{ key }}: {{ value }}</div> -->
-      <li><h2>Skills</h2></li>
-      <div v-for="skill in skills" v-bind:key="skill.id">{{ skills.skill_name }}</div>
-    </ul>
-    <div>
-      <h3>{{ capstone.name }}</h3>
-      <p>{{ capstone.description }}</p>
-      <p>{{ capstone.url }}</p>
-      <p>{{ capstone.screenshot }}</p>
-    </div>
-    <a class="twitter-timeline" href="https://twitter.com/PhilosophyDose_?ref_src=twsrc%5Etfw">
-      Tweets by PhilosophyDose_
-    </a>
+    <!-- <p> -->
+    <!-- Search by Name: -->
+    <!-- <input type="text" v-model="first_nameFilter" list="first_name" /> -->
+    <!-- <datalist id="first_name"> -->
+    <!-- <option v-for="student in students" v-bind:key="student.id">{{ student.first_name }}</option> -->
+    <!-- </datalist> -->
+    <!-- </p> -->
+    <!-- <div v-for="student in filterName()" v-bind:key="student.id"> -->
+    <!-- <h2>{{ student.first_name }}</h2> -->
+    <!-- <p>{{ student.last_name }}</p> -->
+    <!-- <router-link v-bind:to="`/students/${student.id}`">More details</router-link> -->
+    <!-- </div> -->
+    <span class="border border-bottom-0">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="mx-auto" style="width: 900px">
+          <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
+          <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+          <h3>Email: {{ student.email }} | Phone Number: {{ student.phone_number }} |</h3>
+          <h5>
+            <a :href="`${student.linkedin}`">{{ student.linkedin }}</a>
+            | Twitter: {{ student.twitter_handle }} |
+            <a :href="`${student.personal_website}`">{{ student.personal_website }}</a>
+            |
+            <a :href="`${student.online_resume}`">{{ student.online_resume }}</a>
+            |
+            <a :href="`${student.github}`">{{ student.github }}</a>
+          </h5>
+          <h3>{{ student.short_bio }}</h3>
+        </div>
+      </div>
+    </span>
+    <span class="border border-bottom-0">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="mx-auto" style="width: 900px">
+          <li>
+            <h2>Education</h2>
+            <div v-for="(value, key) in experience" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
+          </li>
+        </div>
+      </div>
+    </span>
+    <span class="border border-bottom-0">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="mx-auto" style="width: 900px">
+          <li><h2>Experience</h2></li>
+          <div v-for="(value, key) in education" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
+        </div>
+      </div>
+    </span>
+    <span class="border border-bottom-0">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="mx-auto" style="width: 900px">
+          <ul>
+            <h2>Skills</h2>
+          </ul>
+          <div v-for="skill in skills" v-bind:key="skill.id">{{ skill.skill_name }}</div>
+          <p>{{ skill_name }}</p>
+        </div>
+      </div>
+    </span>
+
+    <span class="border border-bottom-0">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="mx-auto" style="width: 900px">
+          <div>
+            <h3>{{ student.capstones[0].name }}</h3>
+            <p>{{ student.capstones[0].description }}</p>
+            <p>{{ student.capstones[0].url }}</p>
+            <p>{{ student.capstones[0].screenshot }}</p>
+            <img v-bind:src="student.capstones[0].screenshot" v-bind:alt="student.capstones.name" class="image-fit" />
+          </div>
+        </div>
+      </div>
+    </span>
+    <span class="border border-bottom-0">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="mx-auto" style="width: 900px">
+          <a class="twitter-timeline" data-width="900" href="https://twitter.com/PhilosophyDose_?ref_src=twsrc%5Etfw">
+            Tweets by PhilosophyDose_
+          </a>
+        </div>
+      </div>
+    </span>
   </div>
+  <!-- </div> -->
 </template>
 
 <style>
@@ -71,5 +120,23 @@ export default {
   height: 25%;
   width: 25%;
   object-fit: cover;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+}
+span {
+  width: 100px;
+  background: white;
+  font-size: 20px;
+  color: black;
+  text-align: left;
+  margin: 120px;
+}
+div {
+  margin-bottom: 30px;
+  margin-top: 0px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 </style>
