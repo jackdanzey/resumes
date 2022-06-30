@@ -54,15 +54,15 @@ export default {
           <img v-bind:src="student.photo" v-bind:alt="student.first_name" class="image-fit" />
           <h1>{{ student.first_name }} {{ student.last_name }}</h1>
           <h3>Email: {{ student.email }} | Phone Number: {{ student.phone_number }} |</h3>
-          <h5>
+          <h4>
             <a :href="`${student.linkedin}`">{{ student.linkedin }}</a>
-            | Twitter: {{ student.twitter_handle }} |
+            | Twitter: @{{ student.twitter_handle }} |
             <a :href="`${student.personal_website}`">{{ student.personal_website }}</a>
             |
             <a :href="`${student.online_resume}`">{{ student.online_resume }}</a>
             |
             <a :href="`${student.github}`">{{ student.github }}</a>
-          </h5>
+          </h4>
           <h3>{{ student.short_bio }}</h3>
         </div>
       </div>
@@ -70,8 +70,15 @@ export default {
     <span class="border border-bottom-0">
       <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="mx-auto" style="width: 900px">
-          <h2>Education</h2>
-          <div v-for="(value, key) in experiences" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
+          <li>
+            <h2>Education</h2>
+            <div v-for="education in educations" v-bind:key="education.id">
+              <h3>{{ education.university_name }}</h3>
+              <h4>{{ education.degree }}</h4>
+              <p>{{ education.start_date }} - {{ education.end_date }}</p>
+              <p>{{ education.details }}</p>
+            </div>
+          </li>
         </div>
       </div>
     </span>
@@ -105,6 +112,7 @@ export default {
       <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="mx-auto" style="width: 900px">
           <div>
+            <h2>Capstone Project:</h2>
             <h3>{{ student.capstones[0].name }}</h3>
             <p>{{ student.capstones[0].description }}</p>
             <p>{{ student.capstones[0].url }}</p>
@@ -129,8 +137,8 @@ export default {
 
 <style>
 .image-fit {
-  height: 25%;
-  width: 25%;
+  height: 35%;
+  width: 35%;
   object-fit: cover;
 }
 body {
