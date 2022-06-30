@@ -89,7 +89,7 @@ export default {
       <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="mx-auto" style="width: 900px">
           <li><h2>Skills</h2></li>
-          <div v-for="skill in skills" v-bind:key="skill.id">{{ skill }}</div>
+          <div v-for="skill in skills" v-bind:key="skill.id">{{ skill.skill_name }}</div>
           <p>{{ skill_name }}</p>
         </div>
       </div>
