@@ -7,8 +7,8 @@ export default {
       student: {},
       capstones: [],
       first_nameFilter: "",
-      experience: [],
-      education: [],
+      experiences: [],
+      educations: [],
       skills: [],
     };
   },
@@ -16,8 +16,8 @@ export default {
     axios.get("/students/1.json").then((response) => {
       this.student = response.data;
       this.capstones = response.data.capstones;
-      this.experience = response.data.experience;
-      this.education = response.data.education;
+      this.experiences = response.data.experiences;
+      this.educations = response.data.educations;
       this.skills = response.data.skills;
       console.log(response.data);
     });
@@ -70,27 +70,33 @@ export default {
     <span class="border border-bottom-0">
       <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="mx-auto" style="width: 900px">
-          <li>
-            <h2>Education</h2>
-            <div v-for="(value, key) in experience" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
-          </li>
+          <h2>Education</h2>
+          <div v-for="(value, key) in experiences" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
         </div>
       </div>
     </span>
     <span class="border border-bottom-0">
       <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="mx-auto" style="width: 900px">
-          <li><h2>Experience</h2></li>
-          <div v-for="(value, key) in education" v-bind:key="(key, value)">{{ key }}: {{ value }}</div>
+          <h2>Experience</h2>
+          <!-- <div v-for="(value, key) in education" v-bind:key="(key, value)">{{ key }}: {{ value }}</div> -->
+          <div v-for="experience in experiences" v-bind:key="experience.id">
+            <p>Title: {{ experience.job_title }}</p>
+            <p>Company: {{ experience.company_name }}</p>
+            <p>Details: {{ experience.details }}</p>
+            <p>{{ experience.start_date }} - {{ experience.end_date }}</p>
+          </div>
+          <!-- <p>{{ job_title }}</p> -->
+          <!-- <p>{{ experiences[0] }}</p> -->
         </div>
       </div>
     </span>
     <span class="border border-bottom-0">
       <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="mx-auto" style="width: 900px">
-          <li><h2>Skills</h2></li>
+          <h2>Skills</h2>
           <div v-for="skill in skills" v-bind:key="skill.id">{{ skill.skill_name }}</div>
-          <p>{{ skill_name }}</p>
+          <!-- <p>{{ skill_name }}</p> -->
         </div>
       </div>
     </span>
